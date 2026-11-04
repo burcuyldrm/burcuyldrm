@@ -17,7 +17,7 @@
 
 ```
   studying ai & data engineering · building things with python, php & sql
-  endlessly curious about how data tells stories · fuelled by coffee & pink playlists
+  endlessly curious about how data tells stories · fuelled by coffee & playlists
 ```
 
 <br/>
