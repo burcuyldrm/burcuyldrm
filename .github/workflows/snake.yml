@@ -1,0 +1,36 @@
+name: Generate Contribution Snake
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every day
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate snake SVG (light — pink palette)
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: burcuyldrm
+          outputs: |
+            dist/snake.svg?color_snake=#D4A0C0&color_dots=#fce4f0,#f8bbd0,#f48fb1,#f06292,#c2185b
+
+      - name: Generate snake SVG (dark palette fallback)
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: burcuyldrm
+          outputs: |
+            dist/snake-dark.svg?palette=github-dark
+
+      - name: Push output to 'output' branch
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
